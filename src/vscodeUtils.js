@@ -7,20 +7,28 @@ export const registerCommandsOutput = (context, cmd) => {
 
 export const registerCommandsInputOutput = (context, cmd) => {
   context.subscriptions.push(
-    commands.registerCommand(cmd.key, () =>
+    commands.registerCommand(cmd.key, (arg = {}) => {
+      const { input } = arg
+
+      if (input) {
+        return invokeCmd(input)
+      }
+
       window
         .showInputBox({
           prompt: cmd.prompt,
           placeHolder: !cmd.placeHolder ? '' : cmd.placeHolder,
         })
-        .then((inputValue) => {
-          if (!cmd.validation || cmd.validation(inputValue)) {
-            editorInsert(cmd.callback, { inputValue })
-          } else {
-            window.showErrorMessage(cmd.errorMsg)
-          }
-        })
-    )
+        .then(invokeCmd)
+
+      function invokeCmd(inputValue) {
+        if (!cmd.validation || cmd.validation(inputValue)) {
+          editorInsert(cmd.callback, { inputValue })
+        } else {
+          window.showErrorMessage(cmd.errorMsg)
+        }
+      }
+    })
   )
 }
 

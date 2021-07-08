@@ -1,13 +1,13 @@
 {
-    "name": "vscode-random",
-    "displayName": "vscode-random",
+    "name": "vsc-random",
+    "displayName": "vsc-random",
     "description": "Generates random data directly into VS Code",
     "icon": "images/vscode-random-icon.png",
-    "version": "1.9.0",
-    "publisher": "jrebocho",
+    "version": "1.0.0",
+    "publisher": "xhavit",
     "repository": {
         "type": "git",
-        "url": "https://github.com/jrebocho/vscode-random.git"
+        "url": "https://github.com/xhavit-tool/vsc-random.git"
     },
     "license": "MIT",
     "engines": {
@@ -328,10 +328,10 @@
         },
         "submenus": [
             {
-              "id": "vscode-random",
-              "label": "Random"
+                "id": "vscode-random",
+                "label": "Random"
             }
-          ]
+        ]
     },
     "scripts": {
         "compile": "rimraf build & babel src --out-dir build",
